@@ -1,6 +1,10 @@
 import typing
 
 
+def maxSubArray(arr: typing.List[int]):
+    pass    
+
+
 def maxLenSubQueue(q: typing.List) -> typing.Tuple[int, typing.List]:
     if len(q) == 1:
         return 1, q[0], q[0]
@@ -12,7 +16,7 @@ def maxLenSubQueue(q: typing.List) -> typing.Tuple[int, typing.List]:
     elif last < mn:
         mn = last
         n += 1
-    
+
     return n, mn, mx
 
 
