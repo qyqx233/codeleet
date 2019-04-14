@@ -1,2 +1,4 @@
 *.exe
 *.dump
+golang/src/tool/file/files.*.txt
+
