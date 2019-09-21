@@ -1,0 +1,1 @@
+ create table cc (a int auto_increment, b int, primary key(a));

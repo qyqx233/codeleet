@@ -5,26 +5,9 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
+	"testing"
 	"time"
 )
-
-func main() {
-	// deferCall()
-	// travelStudents()
-	// waitGroup()
-	// mapTest()
-	// jsonTest()
-	// chanTest()
-	// mapTest1()
-	// funcTest()
-	// argfuncTest("a", "b", "c")
-	// structTest()
-	// t := teacherShow{}
-	// t.peopleShow.showA()
-	// t.showB()
-	// foo()
-	selectTest()
-}
 
 type Student struct {
 	Name string
@@ -32,7 +15,7 @@ type Student struct {
 }
 
 // go的闭包
-func waitGroup() {
+func Test_waitGroup(t *testing.T) {
 	runtime.GOMAXPROCS(1)
 	wg := sync.WaitGroup{}
 	wg.Add(20)
@@ -51,7 +34,7 @@ func waitGroup() {
 	wg.Wait()
 }
 
-func travelStudents() {
+func Test_travelStudents(t *testing.T) {
 	m := make(map[string]*Student)
 	stus := []Student{
 		{Name: "Jack", Age: 10},
@@ -60,11 +43,11 @@ func travelStudents() {
 	for _, stu := range stus {
 		m[stu.Name] = &stu
 	}
-	fmt.Println(m)
+	t.Log(m)
 }
 
 // panic在所有的defer执行后才会调用
-func deferCall() {
+func Test_deferCall(t *testing.T) {
 	defer func() { fmt.Println("print before") }()
 	panic("panic")
 	defer func() { fmt.Println("print doing") }()
@@ -96,7 +79,7 @@ func reflectTest() {
 }
 
 // json结构体字段名必须首字母大写
-func jsonTest() {
+func Test_jsonTest(t *testing.T) {
 	type People struct {
 		Name string `json:"name"`
 	}
@@ -109,12 +92,12 @@ func jsonTest() {
 		fmt.Println("err: ", err)
 		return
 	}
-	fmt.Println("people: ", p)
-	fmt.Println("people: ", p.Name)
+	t.Logf("people: %v", p)
+	t.Logf("people: %s", p.Name)
 }
 
 // chan必须关闭，一般由生产者关闭，消费者获取后必须判断返回值
-func chanTest() {
+func Test_chanTest(t *testing.T) {
 	abc := make(chan int, 1)
 	go func() {
 		for i := 0; i < 10; i++ {
@@ -131,12 +114,12 @@ func chanTest() {
 			fmt.Println("a: ", a)
 		}
 	}()
-	fmt.Println("close")
+	t.Log("close")
 	time.Sleep(time.Second * 2)
 }
 
 // 如果map的val是个结构体
-func mapTest1() {
+func Test_mapTest1(t *testing.T) {
 	type Student struct {
 		name string
 	}
@@ -239,7 +222,7 @@ func foo() {
 
 }
 
-func selectTest() {
+func Test_selectTest(t *testing.T) {
 	runtime.GOMAXPROCS(1)
 	intChan := make(chan int, 10)
 	strChan := make(chan string, 10)

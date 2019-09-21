@@ -1,7 +1,6 @@
 import typing
 import itertools
 
-
 def fourNum(nums: typing.List[int], target: int):
     for i in itertools.combinations(nums):
         print(i)
@@ -16,6 +15,9 @@ def twoNum(nums: typing.List[int], target: int):
     for i, j in mp.items():
         if j in nums:
             print(i, j)
+
+
+
 
 
 if __name__ == "__main__":

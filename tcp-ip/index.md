@@ -1,0 +1,1 @@
+向已经close的socket写入数据
